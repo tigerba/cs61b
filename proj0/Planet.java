@@ -56,19 +56,53 @@ public class Planet{
      * the force exerted in the X direction
      */
     public double calcForceExertedByX(Planet p) {
-        double dxxPos = p.xxPos - this.xxPos;
-        double dist = this.calcDistance(p);
-        double force = this.calcForceExertedBy(p);
-        return force * dxxPos / dist;
+        if (this.equals(p)) {
+            return 0;
+        } else {
+            double dxxPos = p.xxPos - this.xxPos;
+            double dist = this.calcDistance(p);
+            double force = this.calcForceExertedBy(p);
+            return force * dxxPos / dist;
+        }
     }
 
     /** method
      * the force exerted in the Y direction
      */
     public double calcForceExertedByY(Planet p) {
-        double dyyPos = p.yyPos - this.yyPos;
-        double dist = this.calcDistance(p);
-        double force = this.calcForceExertedBy(p);
-        return force * dyyPos / dist;
+        if (this.equals(p)) {
+            return 0;
+        } else {
+            double dyyPos = p.yyPos - this.yyPos;
+            double dist = this.calcDistance(p);
+            double force = this.calcForceExertedBy(p);
+            return force * dyyPos / dist;
+        }
     }
+
+    /** method
+     * the net force exerted in the X direction
+     */
+    public double calcNetForceExertedByX(Planet[] allPlanets) {
+        double xxNet = 0;
+
+        for (Planet p : allPlanets) {
+            xxNet += this.calcForceExertedByX(p);
+        }
+        return xxNet;
+    }
+
+    /** method
+     * the net force exerted in the Y direction
+     */
+    public double calcNetForceExertedByY(Planet[] allPlanets) {
+        double yyNet = 0;
+
+        for (Planet p : allPlanets) {
+            yyNet += this.calcForceExertedByY(p);
+        }
+
+        return yyNet;
+    }
+
 }
