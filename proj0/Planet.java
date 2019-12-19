@@ -8,6 +8,7 @@ public class Planet{
     public double yyVel; // current velocity in y direction
     public double mass; // its mass
     public String imgFileName; // The name of the file that corresponds to the image that depicts the planet
+    public static double GRAVITATIONAL_CONSTANT = 6.67e-11;
 
     /** constructor
      *
@@ -21,7 +22,7 @@ public class Planet{
         this.imgFileName = img;
     }
 
-    /**
+    /** constructor
      * initialize an identical Planet object
      * @param p
      */
@@ -41,5 +42,13 @@ public class Planet{
         double dxxPos = Math.pow(this.xxPos - p.xxPos, 2);
         double dyyPos = Math.pow(this.yyPos - p.yyPos, 2);
         return Math.pow(dxxPos + dyyPos, 0.5);
+    }
+
+    /** method
+     * returns a double describing the force exerted on this planet by the given planet
+     */
+    public double calcForceExertedBy(Planet p) {
+        double dist_square = Math.pow(this.calcDistance(p), 2);
+        return GRAVITATIONAL_CONSTANT * this.mass * p.mass / dist_square;
     }
 }
