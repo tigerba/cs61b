@@ -8,7 +8,7 @@ public class Planet{
     public double yyVel; // current velocity in y direction
     public double mass; // its mass
     public String imgFileName; // The name of the file that corresponds to the image that depicts the planet
-    public static double GRAVITATIONAL_CONSTANT = 6.67e-11;
+    public static final double GRAVITATIONAL_CONSTANT = 6.67e-11;
 
     /** constructor
      *
@@ -39,16 +39,36 @@ public class Planet{
      * calculates the distance between two Planets
      */
     public double calcDistance(Planet p) {
-        double dxxPos = Math.pow(this.xxPos - p.xxPos, 2);
-        double dyyPos = Math.pow(this.yyPos - p.yyPos, 2);
-        return Math.pow(dxxPos + dyyPos, 0.5);
+        double dxxPos_sq = Math.pow(this.xxPos - p.xxPos, 2);
+        double dyyPos_sq = Math.pow(this.yyPos - p.yyPos, 2);
+        return Math.pow(dxxPos_sq + dyyPos_sq, 0.5);
     }
 
     /** method
      * returns a double describing the force exerted on this planet by the given planet
      */
     public double calcForceExertedBy(Planet p) {
-        double dist_square = Math.pow(this.calcDistance(p), 2);
-        return GRAVITATIONAL_CONSTANT * this.mass * p.mass / dist_square;
+        double dist_sq = Math.pow(this.calcDistance(p), 2);
+        return GRAVITATIONAL_CONSTANT * this.mass * p.mass / dist_sq;
+    }
+
+    /** method
+     * the force exerted in the X direction
+     */
+    public double calcForceExertedByX(Planet p) {
+        double dxxPos = p.xxPos - this.xxPos;
+        double dist = this.calcDistance(p);
+        double force = this.calcForceExertedBy(p);
+        return force * dxxPos / dist;
+    }
+
+    /** method
+     * the force exerted in the Y direction
+     */
+    public double calcForceExertedByY(Planet p) {
+        double dyyPos = p.yyPos - this.yyPos;
+        double dist = this.calcDistance(p);
+        double force = this.calcForceExertedBy(p);
+        return force * dyyPos / dist;
     }
 }
