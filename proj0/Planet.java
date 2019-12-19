@@ -105,4 +105,16 @@ public class Planet{
         return yyNet;
     }
 
+    /** method
+     * determines how much the forces exerted on the planet will cause that planet to accelerate,
+     * and the resulting change in the planet’s velocity and position in a small period of time dt
+     */
+    public void update(double dt, double xxForce, double yyForce) {
+        double xxAcc = xxForce / this.mass;
+        double yyAcc = yyForce / this.mass;
+        this.xxVel = this.xxVel + xxAcc * dt;
+        this.yyVel = this.yyVel + yyAcc * dt;
+        this.xxPos = this.xxPos + this.xxVel * dt;
+        this.yyPos = this.yyPos + this.yyVel * dt;
+    }
 }
