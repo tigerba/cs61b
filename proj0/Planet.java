@@ -34,6 +34,12 @@ public class Planet{
         this.imgFileName = p.imgFileName;
     }
 
-
-
+    /** method
+     * calculates the distance between two Planets
+     */
+    public double calcDistance(Planet p) {
+        double dxxPos = Math.pow(this.xxPos - p.xxPos, 2);
+        double dyyPos = Math.pow(this.yyPos - p.yyPos, 2);
+        return Math.pow(dxxPos + dyyPos, 0.5);
+    }
 }
