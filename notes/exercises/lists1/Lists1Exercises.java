@@ -4,6 +4,7 @@ public class Lists1Exercises {
       * to change. */
     public static IntList incrList(IntList L, int x) {
         /* Your code here. */
+        /*
         IntList Q = new IntList(0, null);
         int i = L.size() - 1;
         
@@ -12,7 +13,15 @@ public class Lists1Exercises {
             Q = new IntList(L.get(i - 1) + x, Q);
             i -= 1;
         }
-        return Q;
+        return Q; */
+        if (L == null) {
+            return L;
+        } else {
+            IntList rest = incrList(L.rest, x);
+            IntList Q = new IntList(L.first + x, rest);
+            return Q;
+        }
+        
     }
 
     /** Returns an IntList identical to L, but with
@@ -27,6 +36,7 @@ public class Lists1Exercises {
             Q = Q.rest;
         }
         return L;
+        
     }
 
     public static void main(String[] args) {
