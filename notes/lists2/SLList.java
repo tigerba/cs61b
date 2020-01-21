@@ -5,7 +5,7 @@ public class SLList {
 		public int item;
 		public IntNode next;
 
-		public IntNode(int i, IntNode n) {
+		public IntNode(int i, IntNode n) { /* initialization */
 			item = i;
 			next = n;
 			System.out.println(size);
